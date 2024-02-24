@@ -214,7 +214,7 @@ color: #EBCE38
        <string>Welcome Back!</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="primary_key">
+     <widget class="QLineEdit" name="lineEdit_email">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -227,7 +227,7 @@ color: #EBCE38
        <string>Enter your email </string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="password">
+     <widget class="QLineEdit" name="lineEdit_password">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -301,7 +301,7 @@ color: #2c2c2c</string>
        <string>Let's find your daisy!</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_sigin_error">
+     <widget class="QLabel" name="label_signin_error">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -325,7 +325,7 @@ color: #2c2c2c</string>
      </widget>
     </widget>
     <widget class="QWidget" name="signup_phone">
-     <widget class="QPushButton" name="btnBackPhone">
+     <widget class="QPushButton" name="btnBackSignup">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -351,12 +351,12 @@ color: #2c2c2c</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="text_phone">
+     <widget class="QLabel" name="text_welcome2">
       <property name="geometry">
        <rect>
-        <x>85</x>
+        <x>75</x>
         <y>60</y>
-        <width>233</width>
+        <width>249</width>
         <height>32</height>
        </rect>
       </property>
@@ -368,38 +368,10 @@ color: #2c2c2c</string>
        </font>
       </property>
       <property name="text">
-       <string>What's your number?</string>
+       <string>Welcome to daisydate!</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox_country">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>130</y>
-        <width>50</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: #666666</string>
-      </property>
-      <item>
-       <property name="text">
-        <string>+66</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_phone">
-      <property name="geometry">
-       <rect>
-        <x>110</x>
-        <y>130</y>
-        <width>240</width>
-        <height>30</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btnSignin_3">
+     <widget class="QPushButton" name="btnGetStarted">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -420,6 +392,66 @@ color: #2c2c2c</string>
       </property>
       <property name="text">
        <string>Get Started</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_signup_error">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>230</y>
+        <width>226</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: red</string>
+      </property>
+      <property name="text">
+       <string>Invalid email or password. Please try again.</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditPassword">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>180</y>
+        <width>340</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+      <property name="cursorPosition">
+       <number>0</number>
+      </property>
+      <property name="placeholderText">
+       <string>Enter your password</string>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditEmail">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>130</y>
+        <width>340</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>Enter your email </string>
       </property>
      </widget>
     </widget>
@@ -447,7 +479,7 @@ color: #2c2c2c</string>
        <string>Next</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="label_bd">
       <property name="geometry">
        <rect>
         <x>80</x>
@@ -509,7 +541,7 @@ border-radius: 8px</string>
       </property>
       <property name="dateTime">
        <datetime>
-        <hour>13</hour>
+        <hour>6</hour>
         <minute>0</minute>
         <second>0</second>
         <year>2006</year>
@@ -1179,7 +1211,7 @@ color: #2c2c2c</string>
          <enum>QFrame::Raised</enum>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="btn_fw_photo">
         <property name="geometry">
          <rect>
           <x>205</x>
@@ -1195,7 +1227,7 @@ color: #2c2c2c</string>
          <string>&gt;</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="btn_bk_photo">
         <property name="geometry">
          <rect>
           <x>145</x>
@@ -1278,7 +1310,7 @@ color: #2c2c2c</string>
      </widget>
     </widget>
     <widget class="QWidget" name="preferences">
-     <widget class="QWidget" name="widget_2" native="true">
+     <widget class="QWidget" name="topbar_preferences" native="true">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -1288,9 +1320,11 @@ color: #2c2c2c</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-bottom: 1px solid #d9d9d9;</string>
+       <string notr="true">#topbar_preferences {
+	border-bottom: 1px solid #d9d9d9;
+}</string>
       </property>
-      <widget class="QPushButton" name="btnBackPhoto_2">
+      <widget class="QPushButton" name="btnBackPref">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -1433,7 +1467,7 @@ Suggested. Changes apply on the next day.</string>
        <string>Age</string>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spinBox">
+     <widget class="QSpinBox" name="spinBox_min">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -1451,7 +1485,7 @@ Suggested. Changes apply on the next day.</string>
        <number>18</number>
       </property>
      </widget>
-     <widget class="QSpinBox" name="spinBox_2">
+     <widget class="QSpinBox" name="spinBox_max">
       <property name="geometry">
        <rect>
         <x>340</x>
@@ -1832,7 +1866,7 @@ Suggested. Changes apply on the next day.</string>
           </size>
          </property>
         </widget>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="label_photo">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -1872,7 +1906,7 @@ background-color: #EBCE38</string>
           <string>School</string>
          </property>
         </widget>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="label_cake">
          <property name="geometry">
           <rect>
            <x>20</x>
@@ -1888,7 +1922,7 @@ background-color: #EBCE38</string>
           <pixmap resource="resources.qrc">:/icons/icons/cake.png</pixmap>
          </property>
         </widget>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="label_age_discover">
          <property name="geometry">
           <rect>
            <x>42</x>
@@ -1923,7 +1957,7 @@ background-color: #EBCE38</string>
 	border-bottom: 1px solid #d9d9d9;
 }</string>
       </property>
-      <widget class="QLabel" name="text_discover_2">
+      <widget class="QLabel" name="text_search">
        <property name="geometry">
         <rect>
          <x>175</x>
@@ -1946,7 +1980,7 @@ background-color: #EBCE38</string>
         <string>Search</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="btnPreferences_3">
+      <widget class="QPushButton" name="btnApply">
        <property name="geometry">
         <rect>
          <x>345</x>
@@ -1967,7 +2001,7 @@ background-color: #EBCE38</string>
         <string>Apply</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="btnPreferences_4">
+      <widget class="QPushButton" name="btnCancel">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -1989,7 +2023,7 @@ background-color: #EBCE38</string>
        </property>
       </widget>
      </widget>
-     <widget class="QSpinBox" name="spinBox_3">
+     <widget class="QSpinBox" name="spinBoxMin">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -2045,7 +2079,7 @@ background-color: #EBCE38</string>
        <enum>QFrame::Raised</enum>
       </property>
      </widget>
-     <widget class="QLabel" name="label_8">
+     <widget class="QLabel" name="label_age_search">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -2087,7 +2121,7 @@ background-color: #EBCE38</string>
        <string>to</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox_3">
+     <widget class="QComboBox" name="comboBox_school">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -2218,7 +2252,7 @@ background-color: #EBCE38</string>
        </property>
       </item>
      </widget>
-     <widget class="QSpinBox" name="spinBox_4">
+     <widget class="QSpinBox" name="spinBoxMax">
       <property name="geometry">
        <rect>
         <x>340</x>
@@ -2361,7 +2395,7 @@ background-color: #EBCE38</string>
       <property name="styleSheet">
        <string notr="true">border-bottom: 1px solid #d9d9d9;</string>
       </property>
-      <widget class="QLabel" name="text_suggested_2">
+      <widget class="QLabel" name="text_chat">
        <property name="geometry">
         <rect>
          <x>185</x>
@@ -2430,7 +2464,7 @@ background-color: #EBCE38</string>
       <widget class="QLabel" name="text_user_name">
        <property name="geometry">
         <rect>
-         <x>175</x>
+         <x>180</x>
          <y>30</y>
          <width>44</width>
          <height>22</height>
@@ -2450,7 +2484,7 @@ background-color: #EBCE38</string>
         <string>Name</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="btnBackPhoto_3">
+      <widget class="QPushButton" name="btnBackChat">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -2489,7 +2523,7 @@ background-color: #EBCE38</string>
       <property name="styleSheet">
        <string notr="true">background-color: #EBCE38</string>
       </property>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="lineEditChat">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -2505,7 +2539,7 @@ background-color: #EBCE38</string>
         <string>Aa</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="btnSend">
        <property name="geometry">
         <rect>
          <x>365</x>
@@ -2679,130 +2713,156 @@ background-color: #EBCE38</string>
        </property>
       </widget>
      </widget>
-     <widget class="QLabel" name="user_image_2">
+     <widget class="QScrollArea" name="scrollArea_4">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>70</y>
         <width>400</width>
-        <height>400</height>
+        <height>580</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: #EBCE38</string>
+       <string notr="true">background-color: #ffffff</string>
       </property>
-      <property name="text">
-       <string/>
+      <property name="widgetResizable">
+       <bool>true</bool>
       </property>
-     </widget>
-     <widget class="QFrame" name="hr1_3">
-      <property name="geometry">
-       <rect>
-        <x>18</x>
-        <y>527</y>
-        <width>361</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: #d9d9d9</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::HLine</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-     </widget>
-     <widget class="QLabel" name="icon_myCake">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>510</y>
-        <width>14</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="resources.qrc">:/icons/icons/cake.png</pixmap>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_mySchool">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>485</y>
-        <width>41</width>
-        <height>18</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: #454545</string>
-      </property>
-      <property name="text">
-       <string>School</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_myAge">
-      <property name="geometry">
-       <rect>
-        <x>42</x>
-        <y>513</y>
-        <width>13</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: #707070</string>
-      </property>
-      <property name="text">
-       <string>20</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_4">
-      <property name="geometry">
-       <rect>
-        <x>145</x>
-        <y>440</y>
-        <width>50</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgba(255, 255, 255, 0.5);</string>
-      </property>
-      <property name="text">
-       <string>&lt;</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_5">
-      <property name="geometry">
-       <rect>
-        <x>205</x>
-        <y>440</y>
-        <width>50</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgba(255, 255, 255, 0.5);</string>
-      </property>
-      <property name="text">
-       <string>&gt;</string>
-      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_4">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>398</width>
+         <height>578</height>
+        </rect>
+       </property>
+       <widget class="QLabel" name="label_mySchool">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>415</y>
+          <width>41</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #454545</string>
+        </property>
+        <property name="text">
+         <string>School</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="userImage">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>400</width>
+          <height>400</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: #EBCE38</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnBkPhoto">
+        <property name="geometry">
+         <rect>
+          <x>145</x>
+          <y>370</y>
+          <width>50</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(255, 255, 255, 0.5);</string>
+        </property>
+        <property name="text">
+         <string>&lt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_myAge">
+        <property name="geometry">
+         <rect>
+          <x>42</x>
+          <y>443</y>
+          <width>13</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #707070</string>
+        </property>
+        <property name="text">
+         <string>20</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="icon_myCake">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>440</y>
+          <width>14</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="resources.qrc">:/icons/icons/cake.png</pixmap>
+        </property>
+       </widget>
+       <widget class="QFrame" name="hr1_3">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>460</y>
+          <width>361</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #d9d9d9</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::HLine</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnFwPhoto">
+        <property name="geometry">
+         <rect>
+          <x>205</x>
+          <y>370</y>
+          <width>50</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(255, 255, 255, 0.5);</string>
+        </property>
+        <property name="text">
+         <string>&gt;</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="page_3">
-     <widget class="QTextEdit" name="textEdit">
+     <widget class="QTextEdit" name="textEditBio">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -2818,7 +2878,7 @@ background-color: #EBCE38</string>
        <string>Bio</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox_4">
+     <widget class="QComboBox" name="comboBoxMySchool">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -2958,7 +3018,7 @@ background-color: #EBCE38</string>
 	border-bottom: 1px solid #d9d9d9;
 }</string>
       </property>
-      <widget class="QLabel" name="text_profile_2">
+      <widget class="QLabel" name="text_edit_profile">
        <property name="geometry">
         <rect>
          <x>165</x>
@@ -2981,7 +3041,7 @@ background-color: #EBCE38</string>
         <string>Edit Profile</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="btnEdit_2">
+      <widget class="QPushButton" name="btnDone">
        <property name="geometry">
         <rect>
          <x>350</x>
@@ -3003,7 +3063,7 @@ background-color: #EBCE38</string>
        </property>
       </widget>
      </widget>
-     <widget class="QLabel" name="photo5_2">
+     <widget class="QLabel" name="editPhoto5">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -3025,7 +3085,7 @@ background-color: #EBCE38</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="photo4_2">
+     <widget class="QLabel" name="editPhoto4">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -3047,7 +3107,7 @@ background-color: #EBCE38</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="photo6_2">
+     <widget class="QLabel" name="editPhoto6">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -3069,7 +3129,7 @@ background-color: #EBCE38</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="photo1_2">
+     <widget class="QLabel" name="editPhoto1">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -3096,7 +3156,7 @@ background-color: #EBCE38</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="photo3_2">
+     <widget class="QLabel" name="editPhoto3">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -3118,7 +3178,7 @@ background-color: #EBCE38</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="photo2_2">
+     <widget class="QLabel" name="editPhoto2">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -3145,7 +3205,7 @@ background-color: #EBCE38</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBoxRG_2">
+     <widget class="QComboBox" name="comboBoxMyRG">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -3162,11 +3222,6 @@ background-color: #EBCE38</string>
       </property>
       <item>
        <property name="text">
-        <string>Open to all</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
         <string>Marriage</string>
        </property>
       </item>
@@ -3180,6 +3235,11 @@ background-color: #EBCE38</string>
         <string>Something casual</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>Not sure yet</string>
+       </property>
+      </item>
      </widget>
     </widget>
    </widget>
@@ -3187,7 +3247,7 @@ background-color: #EBCE38</string>
  </widget>
  <resources>
   <include location="resources.qrc"/>
-  <include location="src/resources.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>
