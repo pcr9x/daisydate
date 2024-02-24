@@ -1,0 +1,24 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/yellow-daisy.png</file>
+  </qresource>
+  <qresource prefix="icons">
+    <file>icons/send.png</file>
+    <file>icons/suggested.png</file>
+    <file>icons/account-select.png</file>
+    <file>icons/chat-select.png</file>
+    <file>icons/discover.png</file>
+    <file>icons/discover-select.png</file>
+    <file>icons/suggested-select.png</file>
+    <file>icons/cake.png</file>
+    <file>icons/account.png</file>
+    <file>icons/back.png</file>
+    <file>icons/btn-flower.png</file>
+    <file>icons/chat.png</file>
+    <file>icons/dislike.png</file>
+    <file>icons/flower.png</file>
+    <file>icons/like.png</file>
+    <file>icons/search.png</file>
+    <file>icons/setting-config.png</file>
+  </qresource>
+</RCC>
