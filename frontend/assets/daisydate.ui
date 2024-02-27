@@ -541,12 +541,12 @@ border-radius: 8px</string>
       </property>
       <property name="dateTime">
        <datetime>
-        <hour>6</hour>
+        <hour>23</hour>
         <minute>0</minute>
         <second>0</second>
         <year>2006</year>
         <month>1</month>
-        <day>2</day>
+        <day>1</day>
        </datetime>
       </property>
      </widget>
@@ -668,15 +668,23 @@ color: #2c2c2c</string>
         <height>30</height>
        </rect>
       </property>
+      <property name="toolTipDuration">
+       <number>0</number>
+      </property>
       <property name="styleSheet">
        <string notr="true">color: #666666</string>
       </property>
       <property name="currentIndex">
-       <number>-1</number>
+       <number>0</number>
       </property>
       <property name="placeholderText">
-       <string>Gender</string>
+       <string/>
       </property>
+      <item>
+       <property name="text">
+        <string>Gender</string>
+       </property>
+      </item>
       <item>
        <property name="text">
         <string>Woman</string>
@@ -705,9 +713,17 @@ color: #2c2c2c</string>
       <property name="styleSheet">
        <string notr="true">color: #666666</string>
       </property>
-      <property name="placeholderText">
-       <string>Show me</string>
+      <property name="currentIndex">
+       <number>0</number>
       </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+      <item>
+       <property name="text">
+        <string>Show me</string>
+       </property>
+      </item>
       <item>
        <property name="text">
         <string>Women</string>
@@ -1428,8 +1444,18 @@ Suggested. Changes apply on the next day.</string>
        <string notr="true">color: #666666</string>
       </property>
       <property name="placeholderText">
-       <string>Gender</string>
+       <string/>
       </property>
+      <item>
+       <property name="text">
+        <string>Gender</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Everyone</string>
+       </property>
+      </item>
       <item>
        <property name="text">
         <string>Women</string>
@@ -1438,11 +1464,6 @@ Suggested. Changes apply on the next day.</string>
       <item>
        <property name="text">
         <string>Men</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Everyone</string>
        </property>
       </item>
      </widget>
@@ -1596,9 +1617,17 @@ Suggested. Changes apply on the next day.</string>
       <property name="styleSheet">
        <string notr="true">color: #666666</string>
       </property>
-      <property name="placeholderText">
-       <string>Relationship Goals</string>
+      <property name="currentIndex">
+       <number>0</number>
       </property>
+      <property name="placeholderText">
+       <string/>
+      </property>
+      <item>
+       <property name="text">
+        <string>Relationship Goals</string>
+       </property>
+      </item>
       <item>
        <property name="text">
         <string>Open to all</string>
@@ -2134,8 +2163,13 @@ background-color: #EBCE38</string>
        <string notr="true">color: #666666</string>
       </property>
       <property name="placeholderText">
-       <string>School</string>
+       <string/>
       </property>
+      <item>
+       <property name="text">
+        <string>School</string>
+       </property>
+      </item>
       <item>
        <property name="text">
         <string>Open to all</string>
@@ -2443,6 +2477,16 @@ background-color: #EBCE38</string>
          <height>579</height>
         </rect>
        </property>
+       <widget class="QWidget" name="chatWidget" native="true">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>400</width>
+          <height>80</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>
@@ -2890,9 +2934,17 @@ background-color: #EBCE38</string>
       <property name="styleSheet">
        <string notr="true">color: #666666</string>
       </property>
+      <property name="currentIndex">
+       <number>-1</number>
+      </property>
       <property name="placeholderText">
        <string>School</string>
       </property>
+      <item>
+       <property name="text">
+        <string>School</string>
+       </property>
+      </item>
       <item>
        <property name="text">
         <string>King Mongkut's Institute of Technology Ladkrabang</string>
@@ -3218,8 +3270,13 @@ background-color: #EBCE38</string>
        <string notr="true">color: #666666</string>
       </property>
       <property name="placeholderText">
-       <string>Relationship Goals</string>
+       <string/>
       </property>
+      <item>
+       <property name="text">
+        <string>Relationship Goals</string>
+       </property>
+      </item>
       <item>
        <property name="text">
         <string>Marriage</string>

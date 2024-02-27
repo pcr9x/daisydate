@@ -1,6 +1,8 @@
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
+from PySide6.QtGui import QPixmap
 from assets.daisydate_ui import Ui_MainWindow
+from datetime import datetime
 
 # from assets import resources_rc
 
@@ -10,8 +12,26 @@ class MainUI(QMainWindow):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.currentImgProfile = [
+            self.ui.editPhoto1,
+            self.ui.editPhoto2,
+            self.ui.editPhoto3,
+            self.ui.editPhoto4,
+            self.ui.editPhoto5,
+            self.ui.editPhoto6,
+        ]
+
+        self.currentImgIndex = 0
         self.setup_signals()
-        self.hide_error_message()
+        self.hide_element()
+        self.photo_edit_mapping = {
+            self.ui.photo1: self.ui.editPhoto1,
+            self.ui.photo2: self.ui.editPhoto2,
+            self.ui.photo3: self.ui.editPhoto3,
+            self.ui.photo4: self.ui.editPhoto4,
+            self.ui.photo5: self.ui.editPhoto5,
+            self.ui.photo6: self.ui.editPhoto6,
+        }
 
     def setup_signals(self):
         """Connect signals to slots."""
@@ -27,6 +47,18 @@ class MainUI(QMainWindow):
         self.ui.btnAlmostDone.clicked.connect(self.show_signup_photo_page)
         self.ui.btnBackPhoto.clicked.connect(self.show_signup_info_page)
         self.ui.btnWelcome.clicked.connect(self.show_suggested_page)
+
+        for photo_widget in [
+            self.ui.photo1,
+            self.ui.photo2,
+            self.ui.photo3,
+            self.ui.photo4,
+            self.ui.photo5,
+            self.ui.photo6,
+        ]:
+            photo_widget.mousePressEvent = (
+                lambda event, widget=photo_widget: self.openFileExplorerSignup(widget)
+            )
 
         """Suggested Page"""
         self.ui.btnDiscover.clicked.connect(self.show_discover_page)
@@ -60,9 +92,19 @@ class MainUI(QMainWindow):
         self.ui.btnDiscover_4.clicked.connect(self.show_discover_page)
         self.ui.btnChat_4.clicked.connect(self.show_chat_page)
         self.ui.btnEdit.clicked.connect(self.show_edit_profile_page)
+        self.ui.btnBkPhoto.clicked.connect(lambda: self.setImgProfile(0))
+        self.ui.btnFwPhoto.clicked.connect(lambda: self.setImgProfile(1))
 
         """Edit Profile Page"""
         self.ui.btnDone.clicked.connect(self.show_account_page)
+        for edit_photo_widget in self.currentImgProfile:
+            edit_photo_widget.mousePressEvent = (
+                lambda event, widget=edit_photo_widget: self.openFileExplorer(widget)
+            )
+        if self.ui.comboBoxMySchool.currentText() == "School":
+            self.ui.label_mySchool.hide()
+        else:
+            self.ui.label_mySchool.setText(self.ui.comboBoxMySchool.currentText())
 
     def show_main_page(self):
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -76,7 +118,24 @@ class MainUI(QMainWindow):
     def show_signup_birthday_page(self):
         self.ui.stackedWidget.setCurrentIndex(3)
 
+    from datetime import datetime
+
     def show_signup_info_page(self):
+        birthdate = self.ui.dateEdit.date()
+        current_date = datetime.now().date()
+
+        age = current_date.year - birthdate.year()
+        if (current_date.month, current_date.day) < (
+            birthdate.month(),
+            birthdate.day(),
+        ):
+            age -= 1
+
+        if age < 18:
+            self.ui.label_age_error.show()
+            return
+
+        self.ui.label_myAge.setText(str(age))
         self.ui.stackedWidget.setCurrentIndex(4)
 
     def show_signup_photo_page(self):
@@ -106,10 +165,66 @@ class MainUI(QMainWindow):
     def show_edit_profile_page(self):
         self.ui.stackedWidget.setCurrentIndex(13)
 
-    def hide_error_message(self):
+    def hide_element(self):
         self.ui.label_signin_error.hide()
         self.ui.label_signup_error.hide()
         self.ui.label_age_error.hide()
+        self.ui.label_mySchool.hide()
+
+    def openFileExplorer(self, label):
+        options = QFileDialog.Options()
+        fileName, _ = QFileDialog.getOpenFileName(
+            self,
+            "Open Image",
+            "",
+            "Image Files (*.png *.jpg *.jpeg *.bmp *.gif)",
+            options=options,
+        )
+        if fileName:
+            pixmap = QPixmap(fileName)
+            label.setPixmap(pixmap)
+            label.setScaledContents(True)
+            self.ui.userImage.setPixmap(self.ui.editPhoto1.pixmap())
+            self.ui.userImage.setScaledContents(True)
+
+    def openFileExplorerSignup(self, label):
+        options = QFileDialog.Options()
+        fileName, _ = QFileDialog.getOpenFileName(
+            self,
+            "Open Image",
+            "",
+            "Image Files (*.png *.jpg *.jpeg *.bmp *.gif)",
+            options=options,
+        )
+        if fileName:
+            pixmap = QPixmap(fileName)
+            label.setPixmap(pixmap)
+            label.setScaledContents(True)  # Scale pixmap to fit QLabel
+
+            # Update the corresponding edit photo widget
+            edit_photo_widget = self.photo_edit_mapping.get(label)
+            if edit_photo_widget:
+                edit_photo_widget.setPixmap(pixmap)
+                edit_photo_widget.setScaledContents(True)
+                self.ui.userImage.setPixmap(self.ui.editPhoto1.pixmap())
+                self.ui.userImage.setScaledContents(True)
+
+    def setImgProfile(self, command):
+        if command == 0 and self.currentImgIndex > 0:
+            self.currentImgIndex -= 1
+        elif command == 1 and self.currentImgIndex < len(self.currentImgProfile) - 1:
+            next_photo_pixmap = self.currentImgProfile[
+                self.currentImgIndex + 1
+            ].pixmap()
+            if next_photo_pixmap is not None and not next_photo_pixmap.isNull():
+                self.currentImgIndex += 1
+
+        # Get the edit photo widget corresponding to the current index
+        edit_photo_widget = self.currentImgProfile[self.currentImgIndex]
+
+        # Set the pixmap of ui.userImage to the pixmap of the edit photo widget
+        self.ui.userImage.setPixmap(edit_photo_widget.pixmap())
+        self.ui.userImage.setScaledContents(True)
 
 
 if __name__ == "__main__":
