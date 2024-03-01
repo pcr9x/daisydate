@@ -2,13 +2,13 @@ from pydantic import BaseModel, EmailStr
 from typing import Tuple, List
 
 
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
 class BaseUser(BaseModel):
     name: str
     email: EmailStr
-    phone_number: str
-
-class UserLogin(BaseUser):
-    password: str
 
 class UserDetail(BaseModel):
     bio: str = None
@@ -30,7 +30,8 @@ class UserPreferences(BaseModel):
     age: Tuple[int, int] = (18, 100)
     gender: str = None
 
-class UserInfo(UserLogin):
+class UserInfo(BaseUser):
+    password: str
     date_of_birth: str
     age: int
     id: str = None

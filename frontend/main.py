@@ -1,13 +1,15 @@
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QLabel
 from PySide6.QtGui import QPixmap
 from assets.daisydate_ui import Ui_MainWindow
 from datetime import datetime
-
-# from assets import resources_rc
-
+from PySide6.QtCore import QTimer, QUrl
+from PySide6.QtWebSockets import QWebSocket
+from PySide6.QtCore import Qt, QObject, Signal
 
 class MainUI(QMainWindow):
+    messageReceived = Signal(str)
+
     def __init__(self):
         super().__init__()
         self.ui = Ui_MainWindow()
@@ -32,6 +34,7 @@ class MainUI(QMainWindow):
             self.ui.photo5: self.ui.editPhoto5,
             self.ui.photo6: self.ui.editPhoto6,
         }
+        self.setup_websocket_connection()
 
     def setup_signals(self):
         """Connect signals to slots."""
@@ -83,9 +86,11 @@ class MainUI(QMainWindow):
         self.ui.btnSuggested_3.clicked.connect(self.show_suggested_page)
         self.ui.btnDiscover_3.clicked.connect(self.show_discover_page)
         self.ui.btnAccount_3.clicked.connect(self.show_account_page)
-
+        self.ui.chatWidget.mousePressEvent = self.show_user_chat_page()
+        
         """User Chat Page"""
         self.ui.btnBackChat.clicked.connect(self.show_chat_page)
+        self.ui.btnSend.clicked.connect(self.send_chat_message)
 
         """Account Page"""
         self.ui.btnSuggested_4.clicked.connect(self.show_suggested_page)
@@ -106,6 +111,37 @@ class MainUI(QMainWindow):
         else:
             self.ui.label_mySchool.setText(self.ui.comboBoxMySchool.currentText())
 
+        # Connect messageReceived signal to update_chat_ui slot
+        self.messageReceived.connect(self.update_chat_ui)
+
+    def setup_websocket_connection(self):
+        self.socket = QWebSocket()
+        self.socket.error.connect(self.handle_error)
+        self.socket.connected.connect(self.on_connected)
+        self.socket.disconnected.connect(self.on_disconnected)
+        self.socket.textMessageReceived.connect(self.on_text_received)
+        # Connect to the WebSocket server
+        self.socket.open(QUrl("ws://127.0.0.1:8000/ws"))
+
+    def send_chat_message(self):
+        message = self.ui.lineEditChat.text()
+        if message:
+            self.socket.sendTextMessage(message)
+            self.ui.lineEditChat.clear()
+
+    def handle_error(self):
+        print("WebSocket error occurred.")
+
+    def on_connected(self):
+        print("Connected to WebSocket server.")
+
+    def on_disconnected(self):
+        print("Disconnected from WebSocket server.")
+
+    def on_text_received(self, message):
+        print("Message received:", message)
+        self.messageReceived.emit(message)
+
     def show_main_page(self):
         self.ui.stackedWidget.setCurrentIndex(0)
 
@@ -117,8 +153,6 @@ class MainUI(QMainWindow):
 
     def show_signup_birthday_page(self):
         self.ui.stackedWidget.setCurrentIndex(3)
-
-    from datetime import datetime
 
     def show_signup_info_page(self):
         birthdate = self.ui.dateEdit.date()
@@ -226,9 +260,13 @@ class MainUI(QMainWindow):
         self.ui.userImage.setPixmap(edit_photo_widget.pixmap())
         self.ui.userImage.setScaledContents(True)
 
+    def update_chat_ui(self, message):
+        label = QLabel(message)
+        self.ui.chatBoxLayOut.addWidget(label)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainUI()
     window.show()
+
     sys.exit(app.exec())

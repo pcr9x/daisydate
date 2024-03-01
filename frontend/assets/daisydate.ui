@@ -58,14 +58,14 @@ QComboBox {
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>-10</x>
       <y>0</y>
       <width>400</width>
       <height>700</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>11</number>
     </property>
     <widget class="QWidget" name="page">
      <property name="styleSheet">
@@ -83,6 +83,7 @@ QComboBox {
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -149,6 +150,7 @@ color: #2c2c2c</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -207,6 +209,7 @@ color: #EBCE38
        <font>
         <family>Segoe UI Semibold</family>
         <pointsize>18</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -290,6 +293,7 @@ color: #EBCE38
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -364,6 +368,7 @@ color: #2c2c2c</string>
        <font>
         <family>Segoe UI Semibold</family>
         <pointsize>18</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -383,6 +388,7 @@ color: #2c2c2c</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -468,6 +474,7 @@ color: #2c2c2c</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -492,6 +499,7 @@ color: #2c2c2c</string>
        <font>
         <family>Segoe UI Semibold</family>
         <pointsize>18</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -583,6 +591,7 @@ border-radius: 8px</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -607,6 +616,7 @@ color: #2c2c2c</string>
        <font>
         <family>Segoe UI Semibold</family>
         <pointsize>18</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -677,7 +687,7 @@ color: #2c2c2c</string>
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string/>
       </property>
       <item>
@@ -716,7 +726,7 @@ color: #2c2c2c</string>
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string/>
       </property>
       <item>
@@ -754,6 +764,7 @@ color: #2c2c2c</string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -778,6 +789,7 @@ color: #2c2c2c</string>
        <font>
         <family>Segoe UI Semibold</family>
         <pointsize>18</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -1074,6 +1086,7 @@ color: #2c2c2c</string>
         <font>
          <family>Segoe UI Semibold</family>
          <pointsize>12</pointsize>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -1182,6 +1195,7 @@ color: #2c2c2c</string>
         <property name="font">
          <font>
           <pointsize>10</pointsize>
+          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -1380,6 +1394,7 @@ color: #2c2c2c</string>
        <font>
         <family>Segoe UI Semibold</family>
         <pointsize>14</pointsize>
+        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
@@ -1443,7 +1458,7 @@ Suggested. Changes apply on the next day.</string>
       <property name="styleSheet">
        <string notr="true">color: #666666</string>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string/>
       </property>
       <item>
@@ -1620,7 +1635,7 @@ Suggested. Changes apply on the next day.</string>
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string/>
       </property>
       <item>
@@ -1678,6 +1693,7 @@ Suggested. Changes apply on the next day.</string>
         <font>
          <family>Segoe UI Semibold</family>
          <pointsize>12</pointsize>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -1925,6 +1941,7 @@ background-color: #EBCE38</string>
          <property name="font">
           <font>
            <pointsize>10</pointsize>
+           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -1999,6 +2016,7 @@ background-color: #EBCE38</string>
         <font>
          <family>Segoe UI Semibold</family>
          <pointsize>12</pointsize>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -2162,7 +2180,7 @@ background-color: #EBCE38</string>
       <property name="styleSheet">
        <string notr="true">color: #666666</string>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string/>
       </property>
       <item>
@@ -2442,6 +2460,7 @@ background-color: #EBCE38</string>
         <font>
          <family>Segoe UI Semibold</family>
          <pointsize>12</pointsize>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -2518,6 +2537,7 @@ background-color: #EBCE38</string>
         <font>
          <family>Segoe UI Semibold</family>
          <pointsize>12</pointsize>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -2606,6 +2626,17 @@ background-color: #EBCE38</string>
         </size>
        </property>
       </widget>
+     </widget>
+     <widget class="QWidget" name="verticalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>391</width>
+        <height>581</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="chatBoxLayOut"/>
      </widget>
     </widget>
     <widget class="QWidget" name="page_2">
@@ -2725,6 +2756,7 @@ background-color: #EBCE38</string>
         <font>
          <family>Segoe UI Semibold</family>
          <pointsize>12</pointsize>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -2793,6 +2825,7 @@ background-color: #EBCE38</string>
         <property name="font">
          <font>
           <pointsize>10</pointsize>
+          <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
@@ -2937,7 +2970,7 @@ background-color: #EBCE38</string>
       <property name="currentIndex">
        <number>-1</number>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>School</string>
       </property>
       <item>
@@ -3083,6 +3116,7 @@ background-color: #EBCE38</string>
         <font>
          <family>Segoe UI Semibold</family>
          <pointsize>12</pointsize>
+         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -3269,7 +3303,7 @@ background-color: #EBCE38</string>
       <property name="styleSheet">
        <string notr="true">color: #666666</string>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string/>
       </property>
       <item>

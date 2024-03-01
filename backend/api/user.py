@@ -35,14 +35,6 @@ async def signup_user(user: UserInfo):
             status_code=status.HTTP_409_CONFLICT, detail="Email already exists"
         )
 
-    existing_phone = next(
-        (u for u in root.values() if u.phone_number == user.phone_number), None
-    )
-    if existing_phone:
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT, detail="Phone number already exists"
-        )
-
     date_of_birth = datetime.strptime(user.date_of_birth, "%Y-%m-%d")
     age = (datetime.now() - date_of_birth).days // 365
 
@@ -55,9 +47,9 @@ async def signup_user(user: UserInfo):
     user.age = age
     user.password = pwd_context.hash(user.password)
     user.id = str(uuid.uuid4())
-    root[user.id] = user
+    root[user.email] = user
     transaction.commit()
-    return BaseUser(name=user.name, email=user.email, phone_number=user.phone_number)
+    return BaseUser(name=user.name, email=user.email)
 
 
 @router.post("/login", response_model=dict)
