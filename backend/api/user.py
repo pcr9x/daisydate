@@ -47,27 +47,30 @@ async def signup_user(user: UserInfo):
     user.age = age
     user.password = pwd_context.hash(user.password)
     user.id = str(uuid.uuid4())
-    root[user.email] = user
+    root[user.id] = user
     transaction.commit()
     return BaseUser(name=user.name, email=user.email)
 
 
 @router.post("/login", response_model=dict)
 async def login_user(login_user: UserLogin):
-    if login_user.email not in root:
+    user = next((u for u in root.values() if u.email == login_user.email), None)
+    if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid email"
         )
-    user = root[login_user.email]
+
     if not pwd_context.verify(login_user.password, user.password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid password"
         )
+
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"sub": login_user.email}, expires_delta=access_token_expires
+        data={"sub": user.id}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
+
 
 @router.get("/user/{user_id}", response_model=UserInfo)
 async def get_user(user_id: str):

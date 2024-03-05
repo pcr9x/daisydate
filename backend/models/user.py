@@ -33,7 +33,7 @@ class UserPreferences(BaseModel):
 class UserInfo(BaseUser):
     password: str
     date_of_birth: str
-    age: int
+    age: int = None
     id: str = None
     detail: UserDetail = None
     preferences: UserPreferences = None

@@ -3,29 +3,16 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QLabel
 from PySide6.QtGui import QPixmap
 from assets.daisydate_ui import Ui_MainWindow
 from datetime import datetime
-from PySide6.QtCore import QTimer, QUrl
+from PySide6.QtCore import QTimer, QUrl, QPoint
 from PySide6.QtWebSockets import QWebSocket
 from PySide6.QtCore import Qt, QObject, Signal
 
-class MainUI(QMainWindow):
-    messageReceived = Signal(str)
 
+class MainUI(QMainWindow):
     def __init__(self):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.currentImgProfile = [
-            self.ui.editPhoto1,
-            self.ui.editPhoto2,
-            self.ui.editPhoto3,
-            self.ui.editPhoto4,
-            self.ui.editPhoto5,
-            self.ui.editPhoto6,
-        ]
-
-        self.currentImgIndex = 0
-        self.setup_signals()
-        self.hide_element()
         self.photo_edit_mapping = {
             self.ui.photo1: self.ui.editPhoto1,
             self.ui.photo2: self.ui.editPhoto2,
@@ -34,10 +21,10 @@ class MainUI(QMainWindow):
             self.ui.photo5: self.ui.editPhoto5,
             self.ui.photo6: self.ui.editPhoto6,
         }
-        self.setup_websocket_connection()
+        self.setup_signals()
+        self.hide_element()
 
     def setup_signals(self):
-        """Connect signals to slots."""
         self.ui.btnSignin.clicked.connect(self.show_signin_page)
         self.ui.btnBackSignin.clicked.connect(self.show_main_page)
         self.ui.btnSignup.clicked.connect(self.show_signup_page)
@@ -62,85 +49,6 @@ class MainUI(QMainWindow):
             photo_widget.mousePressEvent = (
                 lambda event, widget=photo_widget: self.openFileExplorerSignup(widget)
             )
-
-        """Suggested Page"""
-        self.ui.btnDiscover.clicked.connect(self.show_discover_page)
-        self.ui.btnChat.clicked.connect(self.show_chat_page)
-        self.ui.btnAccount.clicked.connect(self.show_account_page)
-        self.ui.btnPreferences.clicked.connect(self.show_preferences_page)
-
-        """Preferences Page"""
-        self.ui.btnBackPref.clicked.connect(self.show_suggested_page)
-
-        """Discover Page"""
-        self.ui.btnSuggested_2.clicked.connect(self.show_suggested_page)
-        self.ui.btnChat_2.clicked.connect(self.show_chat_page)
-        self.ui.btnAccount_2.clicked.connect(self.show_account_page)
-        self.ui.btnSearch.clicked.connect(self.show_search_page)
-
-        """Search Page"""
-        self.ui.btnCancel.clicked.connect(self.show_discover_page)
-        self.ui.btnApply.clicked.connect(self.show_discover_page)
-
-        """Chat Page"""
-        self.ui.btnSuggested_3.clicked.connect(self.show_suggested_page)
-        self.ui.btnDiscover_3.clicked.connect(self.show_discover_page)
-        self.ui.btnAccount_3.clicked.connect(self.show_account_page)
-        self.ui.chatWidget.mousePressEvent = self.show_user_chat_page()
-        
-        """User Chat Page"""
-        self.ui.btnBackChat.clicked.connect(self.show_chat_page)
-        self.ui.btnSend.clicked.connect(self.send_chat_message)
-
-        """Account Page"""
-        self.ui.btnSuggested_4.clicked.connect(self.show_suggested_page)
-        self.ui.btnDiscover_4.clicked.connect(self.show_discover_page)
-        self.ui.btnChat_4.clicked.connect(self.show_chat_page)
-        self.ui.btnEdit.clicked.connect(self.show_edit_profile_page)
-        self.ui.btnBkPhoto.clicked.connect(lambda: self.setImgProfile(0))
-        self.ui.btnFwPhoto.clicked.connect(lambda: self.setImgProfile(1))
-
-        """Edit Profile Page"""
-        self.ui.btnDone.clicked.connect(self.show_account_page)
-        for edit_photo_widget in self.currentImgProfile:
-            edit_photo_widget.mousePressEvent = (
-                lambda event, widget=edit_photo_widget: self.openFileExplorer(widget)
-            )
-        if self.ui.comboBoxMySchool.currentText() == "School":
-            self.ui.label_mySchool.hide()
-        else:
-            self.ui.label_mySchool.setText(self.ui.comboBoxMySchool.currentText())
-
-        # Connect messageReceived signal to update_chat_ui slot
-        self.messageReceived.connect(self.update_chat_ui)
-
-    def setup_websocket_connection(self):
-        self.socket = QWebSocket()
-        self.socket.error.connect(self.handle_error)
-        self.socket.connected.connect(self.on_connected)
-        self.socket.disconnected.connect(self.on_disconnected)
-        self.socket.textMessageReceived.connect(self.on_text_received)
-        # Connect to the WebSocket server
-        self.socket.open(QUrl("ws://127.0.0.1:8000/ws"))
-
-    def send_chat_message(self):
-        message = self.ui.lineEditChat.text()
-        if message:
-            self.socket.sendTextMessage(message)
-            self.ui.lineEditChat.clear()
-
-    def handle_error(self):
-        print("WebSocket error occurred.")
-
-    def on_connected(self):
-        print("Connected to WebSocket server.")
-
-    def on_disconnected(self):
-        print("Disconnected from WebSocket server.")
-
-    def on_text_received(self, message):
-        print("Message received:", message)
-        self.messageReceived.emit(message)
 
     def show_main_page(self):
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -190,9 +98,6 @@ class MainUI(QMainWindow):
     def show_chat_page(self):
         self.ui.stackedWidget.setCurrentIndex(10)
 
-    def show_user_chat_page(self):
-        self.ui.stackedWidget.setCurrentIndex(11)
-
     def show_account_page(self):
         self.ui.stackedWidget.setCurrentIndex(12)
 
@@ -204,22 +109,6 @@ class MainUI(QMainWindow):
         self.ui.label_signup_error.hide()
         self.ui.label_age_error.hide()
         self.ui.label_mySchool.hide()
-
-    def openFileExplorer(self, label):
-        options = QFileDialog.Options()
-        fileName, _ = QFileDialog.getOpenFileName(
-            self,
-            "Open Image",
-            "",
-            "Image Files (*.png *.jpg *.jpeg *.bmp *.gif)",
-            options=options,
-        )
-        if fileName:
-            pixmap = QPixmap(fileName)
-            label.setPixmap(pixmap)
-            label.setScaledContents(True)
-            self.ui.userImage.setPixmap(self.ui.editPhoto1.pixmap())
-            self.ui.userImage.setScaledContents(True)
 
     def openFileExplorerSignup(self, label):
         options = QFileDialog.Options()
@@ -243,6 +132,149 @@ class MainUI(QMainWindow):
                 self.ui.userImage.setPixmap(self.ui.editPhoto1.pixmap())
                 self.ui.userImage.setScaledContents(True)
 
+class SuggestedPage:
+    def __init__(self, main_ui):
+        self.main_ui = main_ui
+        self.setup_signals()
+
+    def setup_signals(self):
+        self.main_ui.ui.btnDiscover.clicked.connect(self.main_ui.show_discover_page)
+        self.main_ui.ui.btnChat.clicked.connect(self.main_ui.show_chat_page)
+        self.main_ui.ui.btnAccount.clicked.connect(self.main_ui.show_account_page)
+        self.main_ui.ui.btnPreferences.clicked.connect(
+            self.main_ui.show_preferences_page
+        )
+
+        self.main_ui.ui.btnBackPref.clicked.connect(self.main_ui.show_suggested_page)
+
+
+class DiscoverPage:
+    def __init__(self, main_ui):
+        self.main_ui = main_ui
+        self.setup_signals()
+
+    def setup_signals(self):
+        self.main_ui.ui.btnSuggested_2.clicked.connect(self.main_ui.show_suggested_page)
+        self.main_ui.ui.btnChat_2.clicked.connect(self.main_ui.show_chat_page)
+        self.main_ui.ui.btnAccount_2.clicked.connect(self.main_ui.show_account_page)
+        self.main_ui.ui.btnSearch.clicked.connect(self.main_ui.show_search_page)
+
+        self.main_ui.ui.btnCancel.clicked.connect(self.main_ui.show_discover_page)
+        self.main_ui.ui.btnApply.clicked.connect(self.main_ui.show_discover_page)
+
+
+class ChatPage(QObject):
+    messageReceived = Signal(str)
+
+    def __init__(self, main_ui):
+        super().__init__()
+        self.main_ui = main_ui
+        self.setup_signals()
+
+    def setup_signals(self):
+        self.main_ui.ui.btnSuggested_3.clicked.connect(self.main_ui.show_suggested_page)
+        self.main_ui.ui.btnDiscover_3.clicked.connect(self.main_ui.show_discover_page)
+        self.main_ui.ui.btnAccount_3.clicked.connect(self.main_ui.show_account_page)
+        self.main_ui.ui.chatWidget.mousePressEvent = self.show_user_chat_page
+
+        """User Chat Page"""
+        self.main_ui.ui.btnBackChat.clicked.connect(self.main_ui.show_chat_page)
+        self.main_ui.ui.btnSend.clicked.connect(self.send_chat_message)
+
+        # Connect messageReceived signal to update_chat_ui slot
+        self.messageReceived.connect(self.update_chat_ui)
+
+    def setup_websocket_connection(self):
+        self.socket = QWebSocket()
+        self.socket.error.connect(self.handle_error)
+        self.socket.connected.connect(self.on_connected)
+        self.socket.disconnected.connect(self.on_disconnected)
+        self.socket.textMessageReceived.connect(self.on_text_received)
+        # Connect to the WebSocket server
+        self.socket.open(QUrl("ws://127.0.0.1:8000/ws"))
+
+    def send_chat_message(self):
+        message = self.ui.lineEditChat.text()
+        if message:
+            self.socket.sendTextMessage(message)
+            self.ui.lineEditChat.clear()
+
+    def show_user_chat_page(self, event):
+        local_pos = self.main_ui.ui.chatWidget.mapFromGlobal(event.globalPosition())
+        mouse_point = QPoint(local_pos.x(), local_pos.y())
+
+        if self.main_ui.ui.chatWidget.rect().contains(mouse_point):
+            self.main_ui.ui.stackedWidget.setCurrentIndex(11)
+            self.setup_websocket_connection()
+
+    def handle_error(self):
+        print("WebSocket error occurred.")
+
+    def on_connected(self):
+        print("Connected to WebSocket server.")
+
+    def on_disconnected(self):
+        print("Disconnected from WebSocket server.")
+
+    def on_text_received(self, message):
+        print("Message received:", message)
+        self.messageReceived.emit(message)
+
+    def update_chat_ui(self, message):
+        label = QLabel(message)
+        self.main_ui.ui.chatBoxLayOut.addWidget(label)
+
+
+class AccountPage:
+    def __init__(self, main_ui):
+        self.main_ui = main_ui
+        self.currentImgProfile = [
+            self.main_ui.ui.editPhoto1,
+            self.main_ui.ui.editPhoto2,
+            self.main_ui.ui.editPhoto3,
+            self.main_ui.ui.editPhoto4,
+            self.main_ui.ui.editPhoto5,
+            self.main_ui.ui.editPhoto6,
+        ]
+
+        self.currentImgIndex = 0
+        self.setup_signals()
+
+    def setup_signals(self):
+        self.main_ui.ui.btnSuggested_4.clicked.connect(self.main_ui.show_suggested_page)
+        self.main_ui.ui.btnDiscover_4.clicked.connect(self.main_ui.show_discover_page)
+        self.main_ui.ui.btnChat_4.clicked.connect(self.main_ui.show_chat_page)
+        self.main_ui.ui.btnEdit.clicked.connect(self.main_ui.show_edit_profile_page)
+        self.main_ui.ui.btnBkPhoto.clicked.connect(lambda: self.setImgProfile(0))
+        self.main_ui.ui.btnFwPhoto.clicked.connect(lambda: self.setImgProfile(1))
+
+        """Edit Profile Page"""
+        self.main_ui.ui.btnDone.clicked.connect(self.main_ui.show_account_page)
+        for edit_photo_widget in self.currentImgProfile:
+            edit_photo_widget.mousePressEvent = (
+                lambda event, widget=edit_photo_widget: self.openFileExplorer(widget)
+            )
+        if self.main_ui.ui.comboBoxMySchool.currentText() == "School":
+            self.main_ui.ui.label_mySchool.hide()
+        else:
+            self.main_ui.ui.label_mySchool.setText(self.main_ui.ui.comboBoxMySchool.currentText())
+
+    def openFileExplorer(self, label):
+        options = QFileDialog.Options()
+        fileName, _ = QFileDialog.getOpenFileName(
+            label.parent(),
+            "Open Image",
+            "",
+            "Image Files (*.png *.jpg *.jpeg *.bmp *.gif)",
+            options=options,
+        )
+        if fileName:
+            pixmap = QPixmap(fileName)
+            label.setPixmap(pixmap)
+            label.setScaledContents(True)
+            self.main_ui.ui.userImage.setPixmap(self.main_ui.ui.editPhoto1.pixmap())
+            self.main_ui.ui.userImage.setScaledContents(True)
+
     def setImgProfile(self, command):
         if command == 0 and self.currentImgIndex > 0:
             self.currentImgIndex -= 1
@@ -257,16 +289,17 @@ class MainUI(QMainWindow):
         edit_photo_widget = self.currentImgProfile[self.currentImgIndex]
 
         # Set the pixmap of ui.userImage to the pixmap of the edit photo widget
-        self.ui.userImage.setPixmap(edit_photo_widget.pixmap())
-        self.ui.userImage.setScaledContents(True)
+        self.main_ui.ui.userImage.setPixmap(edit_photo_widget.pixmap())
+        self.main_ui.ui.userImage.setScaledContents(True)
 
-    def update_chat_ui(self, message):
-        label = QLabel(message)
-        self.ui.chatBoxLayOut.addWidget(label)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainUI()
+    suggested_page = SuggestedPage(window)
+    discover_page = DiscoverPage(window)
+    chat_page = ChatPage(window)
+    account_page = AccountPage(window)
     window.show()
 
     sys.exit(app.exec())
