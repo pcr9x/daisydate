@@ -1159,7 +1159,7 @@ color: #2c2c2c</string>
          <rect>
           <x>42</x>
           <y>443</y>
-          <width>13</width>
+          <width>31</width>
           <height>16</height>
          </rect>
         </property>
@@ -1175,7 +1175,7 @@ color: #2c2c2c</string>
          <rect>
           <x>20</x>
           <y>415</y>
-          <width>41</width>
+          <width>351</width>
           <height>18</height>
          </rect>
         </property>
@@ -1918,7 +1918,7 @@ background-color: #EBCE38</string>
           <rect>
            <x>20</x>
            <y>330</y>
-           <width>41</width>
+           <width>251</width>
            <height>18</height>
           </rect>
          </property>
@@ -1956,7 +1956,7 @@ background-color: #EBCE38</string>
           <rect>
            <x>42</x>
            <y>358</y>
-           <width>13</width>
+           <width>31</width>
            <height>16</height>
           </rect>
          </property>
@@ -2797,7 +2797,7 @@ background-color: #EBCE38</string>
          <rect>
           <x>20</x>
           <y>415</y>
-          <width>41</width>
+          <width>361</width>
           <height>18</height>
          </rect>
         </property>
@@ -2851,7 +2851,7 @@ background-color: #EBCE38</string>
          <rect>
           <x>42</x>
           <y>443</y>
-          <width>13</width>
+          <width>41</width>
           <height>16</height>
          </rect>
         </property>

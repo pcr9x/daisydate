@@ -249,15 +249,15 @@ class AccountPage:
         self.main_ui.ui.btnFwPhoto.clicked.connect(lambda: self.setImgProfile(1))
 
         """Edit Profile Page"""
-        self.main_ui.ui.btnDone.clicked.connect(self.main_ui.show_account_page)
+        self.main_ui.ui.btnDone.clicked.connect(
+            lambda: (self.main_ui.show_account_page(), self.update_profile())
+        )
+
         for edit_photo_widget in self.currentImgProfile:
             edit_photo_widget.mousePressEvent = (
                 lambda event, widget=edit_photo_widget: self.openFileExplorer(widget)
             )
-        if self.main_ui.ui.comboBoxMySchool.currentText() == "School":
-            self.main_ui.ui.label_mySchool.hide()
-        else:
-            self.main_ui.ui.label_mySchool.setText(self.main_ui.ui.comboBoxMySchool.currentText())
+        self.main_ui.ui.label_mySchool.hide()
 
     def openFileExplorer(self, label):
         options = QFileDialog.Options()
@@ -291,6 +291,15 @@ class AccountPage:
         # Set the pixmap of ui.userImage to the pixmap of the edit photo widget
         self.main_ui.ui.userImage.setPixmap(edit_photo_widget.pixmap())
         self.main_ui.ui.userImage.setScaledContents(True)
+
+    def update_profile(self):
+        if self.main_ui.ui.comboBoxMySchool.currentText() == "School":
+            self.main_ui.ui.label_mySchool.hide()
+        else:
+            self.main_ui.ui.label_mySchool.show()
+            self.main_ui.ui.label_mySchool.setText(
+                self.main_ui.ui.comboBoxMySchool.currentText()
+            )
 
 
 if __name__ == "__main__":
