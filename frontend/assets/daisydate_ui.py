@@ -59,7 +59,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.stackedWidget = QStackedWidget(self.centralwidget)
         self.stackedWidget.setObjectName(u"stackedWidget")
-        self.stackedWidget.setGeometry(QRect(-10, 0, 400, 700))
+        self.stackedWidget.setGeometry(QRect(0, 0, 400, 700))
         self.page = QWidget()
         self.page.setObjectName(u"page")
         self.page.setStyleSheet(u"")
@@ -202,7 +202,7 @@ class Ui_MainWindow(object):
         self.dateEdit.setStyleSheet(u"background-color: #d9d9d9;\n"
 "padding-left: 10px;\n"
 "border-radius: 8px")
-        self.dateEdit.setDateTime(QDateTime(QDate(2006, 1, 1), QTime(23, 0, 0)))
+        self.dateEdit.setDateTime(QDateTime(QDate(2006, 1, 1), QTime(16, 0, 0)))
         self.label_age_error = QLabel(self.signup_birthday)
         self.label_age_error.setObjectName(u"label_age_error")
         self.label_age_error.setEnabled(True)
@@ -849,7 +849,7 @@ class Ui_MainWindow(object):
         self.btnSend.setIconSize(QSize(18, 18))
         self.verticalLayoutWidget = QWidget(self.chat_inside)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(10, 70, 391, 581))
+        self.verticalLayoutWidget.setGeometry(QRect(0, 70, 401, 581))
         self.chatBoxLayOut = QVBoxLayout(self.verticalLayoutWidget)
         self.chatBoxLayOut.setObjectName(u"chatBoxLayOut")
         self.chatBoxLayOut.setContentsMargins(0, 0, 0, 0)
@@ -1053,7 +1053,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(11)
+        self.stackedWidget.setCurrentIndex(0)
         self.btnSignin.setDefault(False)
         self.btnSignup.setDefault(False)
         self.btnBackSignin.setDefault(False)
@@ -1105,13 +1105,13 @@ class Ui_MainWindow(object):
         self.comboBox_gender.setItemText(2, QCoreApplication.translate("MainWindow", u"Man", None))
         self.comboBox_gender.setItemText(3, QCoreApplication.translate("MainWindow", u"Other", None))
 
-        self.comboBox_gender.setProperty("placeholderText", "")
+        self.comboBox_gender.setPlaceholderText("")
         self.comboBox_showGender.setItemText(0, QCoreApplication.translate("MainWindow", u"Show me", None))
         self.comboBox_showGender.setItemText(1, QCoreApplication.translate("MainWindow", u"Women", None))
         self.comboBox_showGender.setItemText(2, QCoreApplication.translate("MainWindow", u"Men", None))
         self.comboBox_showGender.setItemText(3, QCoreApplication.translate("MainWindow", u"Everyone", None))
 
-        self.comboBox_showGender.setProperty("placeholderText", "")
+        self.comboBox_showGender.setPlaceholderText("")
         self.btnWelcome.setText(QCoreApplication.translate("MainWindow", u"Welcome to daisydate!", None))
         self.text_add_photo.setText(QCoreApplication.translate("MainWindow", u"Add your photo!", None))
         self.btnBackPhoto.setText("")
@@ -1145,7 +1145,7 @@ class Ui_MainWindow(object):
         self.comboBoxGender.setItemText(2, QCoreApplication.translate("MainWindow", u"Women", None))
         self.comboBoxGender.setItemText(3, QCoreApplication.translate("MainWindow", u"Men", None))
 
-        self.comboBoxGender.setProperty("placeholderText", "")
+        self.comboBoxGender.setPlaceholderText("")
         self.text_age.setText(QCoreApplication.translate("MainWindow", u"Age", None))
         self.text_to.setText(QCoreApplication.translate("MainWindow", u"to", None))
         self.comboBoxRG.setItemText(0, QCoreApplication.translate("MainWindow", u"Relationship Goals", None))
@@ -1154,7 +1154,7 @@ class Ui_MainWindow(object):
         self.comboBoxRG.setItemText(3, QCoreApplication.translate("MainWindow", u"A serious relationship", None))
         self.comboBoxRG.setItemText(4, QCoreApplication.translate("MainWindow", u"Something casual", None))
 
-        self.comboBoxRG.setProperty("placeholderText", "")
+        self.comboBoxRG.setPlaceholderText("")
         self.text_discover.setText(QCoreApplication.translate("MainWindow", u"Discover", None))
         self.btnSearch.setText("")
         self.icon_flower.setText("")
@@ -1198,7 +1198,7 @@ class Ui_MainWindow(object):
         self.comboBox_school.setItemText(22, QCoreApplication.translate("MainWindow", u"Rangsit University", None))
         self.comboBox_school.setItemText(23, QCoreApplication.translate("MainWindow", u"Bangkok University", None))
 
-        self.comboBox_school.setProperty("placeholderText", "")
+        self.comboBox_school.setPlaceholderText("")
         self.btnSuggested_3.setText("")
         self.btnDiscover_3.setText("")
         self.btnChat_3.setText("")
@@ -1245,7 +1245,7 @@ class Ui_MainWindow(object):
         self.comboBoxMySchool.setItemText(21, QCoreApplication.translate("MainWindow", u"Rangsit University", None))
         self.comboBoxMySchool.setItemText(22, QCoreApplication.translate("MainWindow", u"Bangkok University", None))
 
-        self.comboBoxMySchool.setProperty("placeholderText", QCoreApplication.translate("MainWindow", u"School", None))
+        self.comboBoxMySchool.setPlaceholderText(QCoreApplication.translate("MainWindow", u"School", None))
         self.text_edit_profile.setText(QCoreApplication.translate("MainWindow", u"Edit Profile", None))
         self.btnDone.setText(QCoreApplication.translate("MainWindow", u"Done", None))
         self.editPhoto5.setText(QCoreApplication.translate("MainWindow", u"+", None))
@@ -1260,6 +1260,6 @@ class Ui_MainWindow(object):
         self.comboBoxMyRG.setItemText(3, QCoreApplication.translate("MainWindow", u"Something casual", None))
         self.comboBoxMyRG.setItemText(4, QCoreApplication.translate("MainWindow", u"Not sure yet", None))
 
-        self.comboBoxMyRG.setProperty("placeholderText", "")
+        self.comboBoxMyRG.setPlaceholderText("")
     # retranslateUi
 
